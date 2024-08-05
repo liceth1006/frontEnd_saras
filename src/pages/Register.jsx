@@ -17,7 +17,7 @@ function Register (){
               }}
             ></div>
           </div>
-          <div className="lg:w-1/2 xl:w-6/12 p-6 sm:p-12">
+          <div className="lg:w-5/6 xl:w-5/6 p-6 sm:p-12">
           <NavLink to="/">
           <HiOutlineLogin className="text-3xl" />
           </NavLink>

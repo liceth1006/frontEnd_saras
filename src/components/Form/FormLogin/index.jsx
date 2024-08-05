@@ -6,13 +6,25 @@ import Button from "../../CommonUI/Button";
 import useAuth from "../../../data/authConnection.js";
 
 const FormLogin = () => {
-  const { login, token, expiresIn } = useAuth();
+  const { login} = useAuth();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
 
   const inputs = [
-    { id: "correo", name: "Correo Electrónico", type: "text", value: correo, setValue: setCorreo },
-    { id: "contrasena", name: "Contraseña", type: "password", value: contrasena, setValue: setContrasena },
+    {
+      id: "correo",
+      name: "Correo Electrónico",
+      type: "text",
+      value: correo,
+      setValue: setCorreo,
+    },
+    {
+      id: "contrasena",
+      name: "Contraseña",
+      type: "password",
+      value: contrasena,
+      setValue: setContrasena,
+    },
   ];
 
   const handleChange = (setValue) => (event) => {
@@ -23,9 +35,17 @@ const FormLogin = () => {
     event.preventDefault();
 
     try {
-      await login(correo, contrasena);
-      console.log(correo)
-      console.log("Login successful", { token, expiresIn });
+      const data = await login(correo, contrasena);
+      // Redirigir según el rol del usuario
+      console.log(data)
+      if (data.userRole === "beneficiary") {
+        window.location.href = "/beneficiary";
+      } else if (data.userRole === "employee") {
+        window.location.href = "/employee";
+      } else {
+        // Manejar errores
+        console.error(data.error);
+      }
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -48,7 +68,7 @@ const FormLogin = () => {
                 title={input.name}
                 type={input.type}
                 value={input.value}
-                onChange={handleChange(input.setValue)} 
+                onChange={handleChange(input.setValue)}
                 required
               />
             ))}
