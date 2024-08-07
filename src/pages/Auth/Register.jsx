@@ -1,7 +1,7 @@
 
 import { HiOutlineLogin } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
-import FormRegister from "../../components/Form/FormRegister";
+import FormRegister from "../../components/Auth/FormRegister";
 function Register (){
   return(
     <>

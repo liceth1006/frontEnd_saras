@@ -1,12 +1,12 @@
 
 import PropTypes from 'prop-types';
+import Footer from '../Footer';
 
 const AuthLayout = ({ children }) => {
   return (
-    <div>
-      <header>Auth Header</header>
+    <div>  
       <main>{children}</main>
-      <footer>Auth Footer</footer>
+      <Footer></Footer>
     </div>
   );
 };

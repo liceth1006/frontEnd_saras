@@ -14,7 +14,7 @@ function AppRoutes() {
   return (
    
       <Routes>
-       <Route path="/" element={<Home />} />
+       <Route path="/" element={<AuthLayout><Home /></AuthLayout>} />
       <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
       <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
       <Route path="/beneficiary" element={<BeneficiaryLayout><Beneficiary /></BeneficiaryLayout>} />
