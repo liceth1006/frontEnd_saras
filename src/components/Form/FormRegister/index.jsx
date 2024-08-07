@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {preloadedConnection} from '../../../data/preloadedConnection.js'
+import { preloadedConnection } from "../../../data/preloadedConnection.js";
 import Logo from "../../CommonUI/Logo/index.jsx";
 import { FiUserCheck } from "react-icons/fi";
 import InputText from "../../CommonUI/InputText.jsx";
@@ -18,34 +18,98 @@ const FormRegister = () => {
   const [fechaNacimiento, setFechaNacimiento] = useState("");
   const [tipoDocumento, setTipoDocumento] = useState("");
   const [rol, setRol] = useState("");
-  const [documentTypes,setDocumentTypes] = useState([])
-
+  const [documentTypes, setDocumentTypes] = useState([]);
 
   useEffect(() => {
     const fechData = async () => {
       const data = await preloadedConnection.readDocumentType();
-      setDocumentTypes(data.map(item => ({
-      id: item.doc_typ_id,
-      name: item.doc_typ_name
-    })));
+      setDocumentTypes(
+        data.map((item) => ({
+          id: item.doc_typ_id,
+          name: item.doc_typ_name,
+        }))
+      );
     };
     fechData();
   }, []);
 
-
-
   const inputs = [
-    { id: "per_name", name: "Nombre", type: "text", value: nombre, setValue: setNombre, component: "InputText" },
-    { id: "per_lastname", name: "Apellido", type: "text", value: apellido, setValue: setApellido, component: "InputText" },
-    { id: "doc_typ_id", name: "Tipo de Documento", value: tipoDocumento, setValue: setTipoDocumento, component: "SelectOption", options: documentTypes },
-    { id: "per_document", name: "Documento", type: "text", value: documento, setValue: setDocumento, component: "InputText" },
-    { id: "per_expedition", name: "Expedición", type: "date", value: expedicion, setValue: setExpedicion, component: "InputText" },
-    { id: "per_birthdate", name: "Fecha de Nacimiento", type: "date", value: fechaNacimiento, setValue: setFechaNacimiento, component: "InputText" },
-    { id: "use_mail", name: "Correo", type: "email", value: email, setValue: setEmail, component: "InputText" },
-    { id: "use_password", name: "Contraseña", type: "password", value: password, setValue: setPassword, component: "InputText" },
-    { id: "use_role", name: "Rol", value: rol, setValue: setRol, component: "SelectOption", options: [ {id: 1, name: 'beneficiary'}, {id: 2, name: 'employee'} ] },
+    {
+      id: "per_name",
+      name: "Nombre",
+      type: "text",
+      value: nombre,
+      setValue: setNombre,
+      component: "InputText",
+    },
+    {
+      id: "per_lastname",
+      name: "Apellido",
+      type: "text",
+      value: apellido,
+      setValue: setApellido,
+      component: "InputText",
+    },
+    {
+      id: "doc_typ_id",
+      name: "Tipo de Documento",
+      value: tipoDocumento,
+      setValue: setTipoDocumento,
+      component: "SelectOption",
+      options: documentTypes,
+    },
+    {
+      id: "per_document",
+      name: "Documento",
+      type: "text",
+      value: documento,
+      setValue: setDocumento,
+      component: "InputText",
+    },
+    {
+      id: "per_expedition",
+      name: "Expedición",
+      type: "date",
+      value: expedicion,
+      setValue: setExpedicion,
+      component: "InputText",
+    },
+    {
+      id: "per_birthdate",
+      name: "Fecha de Nacimiento",
+      type: "date",
+      value: fechaNacimiento,
+      setValue: setFechaNacimiento,
+      component: "InputText",
+    },
+    {
+      id: "use_mail",
+      name: "Correo",
+      type: "email",
+      value: email,
+      setValue: setEmail,
+      component: "InputText",
+    },
+    {
+      id: "use_password",
+      name: "Contraseña",
+      type: "password",
+      value: password,
+      setValue: setPassword,
+      component: "InputText",
+    },
+    {
+      id: "use_role",
+      name: "Rol",
+      value: rol,
+      setValue: setRol,
+      component: "SelectOption",
+      options: [
+        { id: 1, name: "beneficiary" },
+        { id: 2, name: "employee" },
+      ],
+    },
   ];
-  
 
   const handleChange = (setValue) => (event) => {
     setValue(event.target.value);
@@ -55,8 +119,28 @@ const FormRegister = () => {
     event.preventDefault();
 
     try {
-      await register(nombre,apellido,tipoDocumento,documento,expedicion,fechaNacimiento,rol,email,password);
-      console.log((nombre,apellido,tipoDocumento,documento,expedicion,fechaNacimiento,rol,email,password))
+      await register(
+        nombre,
+        apellido,
+        tipoDocumento,
+        documento,
+        expedicion,
+        fechaNacimiento,
+        rol,
+        email,
+        password
+      );
+      console.log(
+        (nombre,
+        apellido,
+        tipoDocumento,
+        documento,
+        expedicion,
+        fechaNacimiento,
+        rol,
+        email,
+        password)
+      );
       console.log("registro  successful", { token, expiresIn });
     } catch (error) {
       console.error("register failed:", error);
@@ -65,7 +149,7 @@ const FormRegister = () => {
 
   return (
     <div className="mt-5 flex flex-col items-center">
-      <Logo />
+      <Logo title="SARAS" slogan="Solución Integral para la Gestión de SARAS" />
       <div className="w-full flex-1 mt-5">
         <div className="flex flex-col items-center">
           <div className="my-5 border-b text-center mb-10">

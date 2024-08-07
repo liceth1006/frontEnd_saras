@@ -1,4 +1,4 @@
-import FormLogin from "../components/Form/FormLogin";
+import FormLogin from "../../components/Form/FormLogin";
 import { HiOutlineLogin } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 const Login = () => {

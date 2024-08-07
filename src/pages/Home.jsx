@@ -19,7 +19,7 @@ function Home() {
           </div>
           <div className="lg:w-1/2 xl:w-6/12 p-6 sm:p-12">
             <div>
-              <Logo />
+            <Logo title="SARAS" slogan="Solución Integral para la Gestión de SARAS" />
             </div>
             <div className="mt-12 flex flex-col items-center">
               <div className="w-full flex-1 mt-8">

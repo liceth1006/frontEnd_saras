@@ -53,7 +53,7 @@ const FormLogin = () => {
 
   return (
     <div className="mt-5 flex flex-col items-center">
-      <Logo />
+      <Logo title="SARAS" slogan="Solución Integral para la Gestión de SARAS" />
       <div className="w-full flex-1 mt-5">
         <div className="flex flex-col items-center">
           <div className="my-5 border-b text-center mb-10">

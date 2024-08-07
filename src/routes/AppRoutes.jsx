@@ -1,17 +1,25 @@
 import {  Route, Routes } from "react-router-dom";
+//layout
+import AuthLayout from '../components/layouts/AuthLayout.jsx'
+import BeneficiaryLayout from '../components/layouts/BeneficiaryLayout.jsx'
+import EmployeeLayout from '../components/layouts/EmployeeLayout.jsx'
+
+//paginas 
 import Home from '../pages/Home'
-import Login from "../pages/Login.jsx";
-import Register from "../pages/Register.jsx";
-import Beneficiary from '../pages/Beneficiary.jsx'
+import Login from "../pages/Auth/Login.jsx";
+import Register from "../pages/Auth/Register.jsx";
+import Beneficiary from '../pages/Beneficiary/Beneficiary.jsx'
+import Employee from '../pages/Employee/Employee.jsx'
 function AppRoutes() {
   return (
    
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="//register" element={<Register/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/beneficiary" element={<Beneficiary/>}></Route>
-        <Route path="/beneficiary/:categoryId" element={<Beneficiary/>}></Route>
+       <Route path="/" element={<Home />} />
+      <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
+      <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
+      <Route path="/beneficiary" element={<BeneficiaryLayout><Beneficiary /></BeneficiaryLayout>} />
+      <Route path="/beneficiary/:categoryId" element={<BeneficiaryLayout><Beneficiary /></BeneficiaryLayout>} />
+      <Route path="/employee" element={<EmployeeLayout><Employee /></EmployeeLayout>} /> 
       </Routes>
 
   );
