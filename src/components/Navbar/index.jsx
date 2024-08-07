@@ -1,11 +1,12 @@
 import Profile from "../Profile";
+import PropTypes from "prop-types";
 import MenuIcon from "./IconHamburger/MenuIcon";
 import CloseIcon from "./IconHamburger/CloseIcon";
 import Logo from "../CommonUI/Logo";
 import NavItem from "./NavItem";
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({items,path}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMenu = () => {
@@ -26,19 +27,29 @@ const Navbar = () => {
         id="default-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } sm:translate-x-0`}
+        } sm:translate-x-0 overflow-y-auto`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto">
-          <div className="h-full px-3 py-4 mb-6">
+        <div className="h-full px-3 py-4  ">
+          <div className="h-full px-3 py-4 mb-6 ">
             <Logo title="SARAS" />
             <Profile />
-            <NavItem />
+            <NavItem  items={items} setIsOpen={setIsOpen}  path={path}/>
           </div>
         </div>
       </aside>
     </>
   );
 };
+
+Navbar.propTypes ={
+  items: PropTypes.arrayOf(
+     PropTypes.shape({
+       name: PropTypes.string.isRequired,
+       icon: PropTypes.string.isRequired
+     })
+   ).isRequired,
+   path: PropTypes.string.isRequired
+}
 
 export default Navbar;

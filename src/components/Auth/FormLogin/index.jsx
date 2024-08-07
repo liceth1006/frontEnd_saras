@@ -39,7 +39,7 @@ const FormLogin = () => {
       // Redirigir según el rol del usuario
       console.log(data)
       if (data.userRole === "beneficiary") {
-        window.location.href = "/beneficiary";
+        window.location.href = "beneficiary/Dashboard";
       } else if (data.userRole === "employee") {
         window.location.href = "/employee";
       } else {

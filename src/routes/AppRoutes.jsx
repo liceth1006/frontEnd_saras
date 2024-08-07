@@ -8,8 +8,9 @@ import EmployeeLayout from '../components/layouts/EmployeeLayout.jsx'
 import Home from '../pages/Home'
 import Login from "../pages/Auth/Login.jsx";
 import Register from "../pages/Auth/Register.jsx";
-import Beneficiary from '../pages/Beneficiary/Beneficiary.jsx'
+// import Beneficiary from '../pages/Beneficiary/Beneficiary.jsx'
 import Employee from '../pages/Employee/Employee.jsx'
+import Dashboard from "../pages/Beneficiary/Dashboard/index.jsx";
 function AppRoutes() {
   return (
    
@@ -17,8 +18,8 @@ function AppRoutes() {
        <Route path="/" element={<AuthLayout><Home /></AuthLayout>} />
       <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
       <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
-      <Route path="/beneficiary" element={<BeneficiaryLayout><Beneficiary /></BeneficiaryLayout>} />
-      <Route path="/beneficiary/:categoryId" element={<BeneficiaryLayout><Beneficiary /></BeneficiaryLayout>} />
+      {/* <Route path="/beneficiary" element={<BeneficiaryLayout><Beneficiary /></BeneficiaryLayout>} /> */}
+      <Route path="/beneficiary/:itemName" element={<BeneficiaryLayout><Dashboard /></BeneficiaryLayout>} />
       <Route path="/employee" element={<EmployeeLayout><Employee /></EmployeeLayout>} /> 
       </Routes>
 
