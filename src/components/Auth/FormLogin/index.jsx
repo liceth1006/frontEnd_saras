@@ -3,10 +3,10 @@ import Logo from "../../CommonUI/Logo";
 import { FiUserCheck } from "react-icons/fi";
 import InputText from "../../CommonUI/InputText";
 import Button from "../../CommonUI/Button";
-import useAuth from "../../../data/authConnection.js";
+import { useAuth } from "../../../contexts/AuthContext.jsx";
 
 const FormLogin = () => {
-  const { login} = useAuth();
+  const { login } = useAuth();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
 
@@ -37,7 +37,8 @@ const FormLogin = () => {
     try {
       const data = await login(correo, contrasena);
       // Redirigir según el rol del usuario
-      console.log(data)
+      console.log("esta es", data);
+
       if (data.userRole === "beneficiary") {
         window.location.href = "beneficiary/Dashboard";
       } else if (data.userRole === "employee") {

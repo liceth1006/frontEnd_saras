@@ -1,32 +1,49 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import useBeneficiaryInfConnection from '../../../hooks/beneficiaryInformation.jsx';
 import Table from "../../../components/Table";
-import { projectConnection } from '../../../data/projectConnection';
-
+import Hero from "../../../components/Hero";
+import Search from '../../../components/Search' 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  const { readBeneficiaryInf } = useBeneficiaryInfConnection();
+  const [beneficiaryInf, setBeneficiaryInf] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      const data = await projectConnection.readProject();
-      console.log(data);
-      setProjects(data);
+    const fetchBeneficiaryInfo = async () => {
+      setLoading(true);
+      try {
+        const data = await readBeneficiaryInf();
+        setBeneficiaryInf(data);
+      } catch (error) {
+        console.error("Error al recuperar los detalles del beneficiario:", error);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchProjects();
-  }, []);
+
+    fetchBeneficiaryInfo();
+  }, [readBeneficiaryInf]);
 
   // Define columns with the correct accessors
   const columns = [
-    { header: "Nombre del Proyecto", accessor: "proj_name" },
-    { header: "Descripción del Proyecto", accessor: "proj_description" },
-    { header: "Valor Total del Proyecto", accessor: "total_project_value" },
-    { header: "Valor Estimado Financiado", accessor: "estimated_value_financed" },
-    { header: "Acciones", accessor: "actions" }, // Assuming actions are not from data
+    { header: "Tipo crédito", accessor: "type_name" },
+    { header: "Nombre o razón social", accessor: "company_name" },
+    { header: "Sector", accessor: "sector_name" },
+    { header: "CIIU Principal", accessor: "acti_name" },
+    { header: "Categorización", accessor: "type_name" },
+    { header: "Exclusión", accessor: "exc_name" },
+    { header: "Acciones", accessor: "actions" }, 
   ];
+
+  if (loading) return <div>Cargando...</div>;
 
   return (
     <>
-      <h2>Mis Proyectos</h2>
-      <Table columns={columns} data={projects} />
+      <Hero />
+      <div className="flex items-end justify-end my-3">
+        <Search />
+      </div>
+      <Table columns={columns} data={beneficiaryInf} />
     </>
   );
 };

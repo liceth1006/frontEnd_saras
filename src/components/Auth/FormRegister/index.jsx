@@ -4,10 +4,11 @@ import Logo from "../../CommonUI/Logo/index.jsx";
 import { FiUserCheck } from "react-icons/fi";
 import InputText from "../../CommonUI/InputText.jsx";
 import Button from "../../CommonUI/Button.jsx";
-import useAuth from "../../../data/authConnection.js";
+import {useAuth} from "../../../contexts/AuthContext.jsx";
 import SelectOption from "../../CommonUI/SelectOption.jsx";
 
 const FormRegister = () => {
+
   const { register, token, expiresIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -190,6 +191,7 @@ const FormRegister = () => {
                   <span> Registrarse</span>
                 </Button>
               </div>
+              este es: {token}
             </div>
           </form>
         </div>

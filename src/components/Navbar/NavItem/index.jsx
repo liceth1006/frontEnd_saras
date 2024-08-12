@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthContext.jsx";
 const NavItem = ({ items, path,setIsOpen }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const current = location.pathname.split("/")[2];
+  const { logout } = useAuth();
 
+  const handleLogout = async () => {
+    await logout(); 
+  };
   const handleClick = (itemName) => {
     navigate(`/${path}/${encodeURIComponent(itemName)}`);
     setIsOpen(false)
@@ -27,7 +32,17 @@ const NavItem = ({ items, path,setIsOpen }) => {
             <span className="ms-3">{item.name}</span>
           </li>
         ))}
+        <li
+         className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
+          current === "salir" ? "bg-red-500" : ""
+        }`}
+        >
+        <button onClick={handleLogout}> <i className="fa-solid fa-arrow-right-to-bracket" />
+        <span className="ms-3">Salir</span>
+        </button>
+        </li>
       </ul>
+
     </>
   );
 };

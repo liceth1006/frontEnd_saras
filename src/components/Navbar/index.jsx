@@ -5,9 +5,15 @@ import CloseIcon from "./IconHamburger/CloseIcon";
 import Logo from "../CommonUI/Logo";
 import NavItem from "./NavItem";
 import { useState } from "react";
+import useProfile from "../../hooks/profileConnection.jsx";
 
-const Navbar = ({items,path}) => {
+const Navbar = ({ items, path }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { profileData, loading } = useProfile();
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
 
   const handleMenu = () => {
     setIsOpen(!isOpen);
@@ -33,8 +39,16 @@ const Navbar = ({items,path}) => {
         <div className="h-full px-3 py-4  ">
           <div className="h-full px-3 py-4 mb-6 ">
             <Logo title="SARAS" />
-            <Profile />
-            <NavItem  items={items} setIsOpen={setIsOpen}  path={path}/>
+            {console.log(profileData)}
+            <Profile
+             image="imagen"
+              name={profileData.per_name}
+              lastname={profileData.per_lastname}
+              email={profileData.use_mail}
+              
+            />
+            <NavItem items={items} setIsOpen={setIsOpen} path={path} />
+            
           </div>
         </div>
       </aside>
@@ -42,14 +56,14 @@ const Navbar = ({items,path}) => {
   );
 };
 
-Navbar.propTypes ={
+Navbar.propTypes = {
   items: PropTypes.arrayOf(
-     PropTypes.shape({
-       name: PropTypes.string.isRequired,
-       icon: PropTypes.string.isRequired
-     })
-   ).isRequired,
-   path: PropTypes.string.isRequired
-}
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  path: PropTypes.string.isRequired,
+};
 
 export default Navbar;

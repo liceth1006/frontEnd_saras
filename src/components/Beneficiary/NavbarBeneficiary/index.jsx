@@ -1,14 +1,15 @@
 import Navbar from "../../Navbar";
 
-
 const NavbarBeneficiary = () => {
+
+
   const navbarItems = [
     {
       name: "Dashboard",
       icon:  "fa-solid fa-chart-pie"
     },
     {
-      name: "Proyectos",
+      name: "Información del beneficiario",
      icon:  "fa-solid fa-list-check"
     },
     {
@@ -18,10 +19,6 @@ const NavbarBeneficiary = () => {
     {
       name: "Documentos",
       icon: "fa-solid fa-folder-open",
-    },
-    {
-      name: "Login",
-      icon:  "fa-solid fa-arrow-right-to-bracket"
     },
   ]
   return (

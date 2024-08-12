@@ -14,7 +14,7 @@ const BeneficiaryLayout = () => {
     case "Dashboard":
       Component = Dashboard;
       break;
-    case "Proyectos":
+    case  "Información del beneficiario":
       Component = Projects;
       break;
       case "Formulario":
@@ -30,13 +30,11 @@ const BeneficiaryLayout = () => {
     <div>
       <NavbarBeneficiary />
       <div className="p-4 sm:ml-64">
-        <div className=" border-2 bg-red-400 border-dashed rounded-lg dark:border-gray-700">
           <main>
             <Component />
           </main>
         </div>
       </div>
-    </div>
   );
 };
 
