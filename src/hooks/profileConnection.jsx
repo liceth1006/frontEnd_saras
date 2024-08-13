@@ -31,7 +31,9 @@ const useProfile = () => {
 
   useEffect(() => {
     fetchProfile();
-  }, [token]);
+  },
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [token]);
 
   return {
     profileData,

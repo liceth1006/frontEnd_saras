@@ -2,6 +2,8 @@ import apiClient from "./apiClient.js";
 
 const URL_DOCUMENT_TYPE = "/documentTypes";
 
+
+
 const readDocumentType = async () => {
   try {
     const res = await apiClient.get(URL_DOCUMENT_TYPE);
@@ -10,6 +12,9 @@ const readDocumentType = async () => {
     console.log(error);
   }
 };
+
+
+
 
 export const preloadedConnection = {
   readDocumentType,

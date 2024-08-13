@@ -1,9 +1,10 @@
+import FormBeneficiaryInfo from "../../../components/Beneficiary/FormBeneficiaryInfo"
 
 
 const Form = ()=>{
   return(
     <>
-    formularios
+   <FormBeneficiaryInfo></FormBeneficiaryInfo>
     </>
   )
 }

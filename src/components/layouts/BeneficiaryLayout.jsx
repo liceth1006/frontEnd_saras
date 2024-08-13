@@ -4,6 +4,7 @@ import NavbarBeneficiary from "../Beneficiary/NavbarBeneficiary";
 import Dashboard from "../../pages/Beneficiary/Dashboard";
 import Projects from "../../pages/Beneficiary/Projects";
 import Form from "../../pages/Beneficiary/Form";
+import Questions from "../../pages/Beneficiary/Questions"
 import NotFound from "../../pages/NotFound";
 
 const BeneficiaryLayout = () => {
@@ -20,6 +21,9 @@ const BeneficiaryLayout = () => {
       case "Formulario":
       Component = Form;
       break;
+      case "Formularios":
+        Component = Questions;
+        break;
     default:
       // eslint-disable-next-line react/display-name
       Component = () => <NotFound path="/beneficiary/Dashboard" />;

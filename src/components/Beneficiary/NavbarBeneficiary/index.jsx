@@ -17,6 +17,10 @@ const NavbarBeneficiary = () => {
      icon:  "fa-solid fa-file-pen"
     },
     {
+      name: "Formularios",
+     icon:  "fa-solid fa-file-pen"
+    },
+    {
       name: "Documentos",
       icon: "fa-solid fa-folder-open",
     },

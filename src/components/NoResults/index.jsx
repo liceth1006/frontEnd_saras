@@ -1,10 +1,9 @@
-import Face from "../../assets/images/face.svg";
 import PropTypes from "prop-types";
 const NoResults = ({ consulta }) => {
   return (
-    <div className="block pt-10 ">
+    <div className=" block pt-10  ">
       <div className="flex justify-center items-center">
-        <img className="w-52 text-center" src={Face} />
+        <i className="fa-solid fa-face-frown text-3xl"></i>
       </div>
       <h2 className="text-xl ">
         {`Su búsqueda de `}
@@ -15,7 +14,7 @@ const NoResults = ({ consulta }) => {
   );
 };
 NoResults.propTypes = {
-  consulta: PropTypes.string.isRequired,
+  consulta: PropTypes.string,
 };
 
 export default NoResults;

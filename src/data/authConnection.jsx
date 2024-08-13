@@ -11,9 +11,11 @@ const useAuth = () => {
         use_mail: use_mail,
         use_password: use_password,
       });
-      setToken(res.data.token);
       setExpiresIn(res.data.expiresIn);
+      setToken(res.data.token);
       sessionStorage.setItem("user", "😰");
+      sessionStorage.setItem("id", res.data.userId);
+
       setTime();
       return res.data;
     } catch (error) {
@@ -26,7 +28,6 @@ const useAuth = () => {
       }
     }
   };
-
   const register = async (
     per_name,
     per_lastname,
@@ -39,17 +40,6 @@ const useAuth = () => {
     use_password
   ) => {
     try {
-      console.log(
-        per_name,
-        per_lastname,
-        doc_typ_id,
-        per_document,
-        per_expedition,
-        per_birthdate,
-        use_role,
-        use_mail,
-        use_password
-      );
       const res = await apiClient.post("/register", {
         per_name: per_name,
         per_lastname: per_lastname,
@@ -61,7 +51,6 @@ const useAuth = () => {
         use_mail: use_mail,
         use_password: use_password,
       });
-      console.log(res);
       return res.data;
     } catch (error) {
       if (error.response) {
@@ -73,44 +62,48 @@ const useAuth = () => {
       }
     }
   };
-   // Función para configurar un temporizador de refresco del token
-   const setTime = () => {
+  // Función para configurar un temporizador de refresco del token
+  const setTime = () => {
+    if (!expiresIn) {
+      return;
+    }
+    let tiempo = parseInt(expiresIn);
+    console.log(tiempo);
     setTimeout(() => {
       console.log("se refresco");
+      console.log("token en time fff", tiempo);
       refreshToken();
-    }, setExpiresIn(expiresIn * 1000 - 6000));
+    }, tiempo * 1000 - 6000);
   };
-// Función para refrescar el token
+  // Función para refrescar el token
   const refreshToken = async () => {
     try {
       const res = await apiClient.get("/refresh");
-      console.log(res.data);
       setToken(res.data.token);
       setExpiresIn(res.data.expiresIn);
-      // setTime();
+      setTime();
     } catch (error) {
       console.error(error);
       console.log("No ingreso 🤦‍♀️🤦‍♀️");
     }
   };
-// Función para restablecer el estado del almacén
+  // Función para restablecer el estado del almacén
   const resetStore = () => {
     setToken(null);
-      setExpiresIn(null);
+    setExpiresIn(null);
   };
 
-  const logout  = async()=>{
-    try{
-      await apiClient.get("/logout")
-      
-    }catch(error){
-      console.log(error)
-    }finally{
+  const logout = async () => {
+    try {
+      await apiClient.get("/logout");
+    } catch (error) {
+      console.error("Error en logout:", error);
+    } finally {
       resetStore();
       sessionStorage.removeItem("user");
+      window.location.href = "/";
     }
-   }
-
+  };
 
   return {
     login,

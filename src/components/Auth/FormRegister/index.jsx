@@ -9,7 +9,7 @@ import SelectOption from "../../CommonUI/SelectOption.jsx";
 
 const FormRegister = () => {
 
-  const { register, token, expiresIn } = useAuth();
+  const { register } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nombre, setNombre] = useState("");
@@ -131,18 +131,6 @@ const FormRegister = () => {
         email,
         password
       );
-      console.log(
-        (nombre,
-        apellido,
-        tipoDocumento,
-        documento,
-        expedicion,
-        fechaNacimiento,
-        rol,
-        email,
-        password)
-      );
-      console.log("registro  successful", { token, expiresIn });
     } catch (error) {
       console.error("register failed:", error);
     }
@@ -191,7 +179,6 @@ const FormRegister = () => {
                   <span> Registrarse</span>
                 </Button>
               </div>
-              este es: {token}
             </div>
           </form>
         </div>

@@ -6,7 +6,7 @@ import Button from "../../CommonUI/Button";
 import { useAuth } from "../../../contexts/AuthContext.jsx";
 
 const FormLogin = () => {
-  const { login } = useAuth();
+  const { login,setToken } = useAuth();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
 
@@ -38,7 +38,7 @@ const FormLogin = () => {
       const data = await login(correo, contrasena);
       // Redirigir según el rol del usuario
       console.log("esta es", data);
-
+      setToken(data.token)
       if (data.userRole === "beneficiary") {
         window.location.href = "beneficiary/Dashboard";
       } else if (data.userRole === "employee") {

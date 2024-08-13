@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       sessionStorage.setItem("id",res.data.userId)
       console.log("token login",token)
       console.log(expiresIn)
-       setTime();
+       setTime(res.data.expiresIn);
       return res.data;
     } catch (error) {
       if (error.response) {
@@ -44,17 +44,6 @@ export const AuthProvider = ({ children }) => {
     use_password
   ) => {
     try {
-      console.log(
-        per_name,
-        per_lastname,
-        doc_typ_id,
-        per_document,
-        per_expedition,
-        per_birthdate,
-        use_role,
-        use_mail,
-        use_password
-      );
       const res = await apiClient.post("/register", {
         per_name: per_name,
         per_lastname: per_lastname,
@@ -66,7 +55,6 @@ export const AuthProvider = ({ children }) => {
         use_mail: use_mail,
         use_password: use_password,
       });
-      console.log(res);
       return res.data;
     } catch (error) {
       if (error.response) {
@@ -79,24 +67,22 @@ export const AuthProvider = ({ children }) => {
     }
   };
   // Función para configurar un temporizador de refresco del token
-  const setTime = () => {
-    let  tiempo = expiresIn
-    console.log(tiempo)
-    console.log(token)
+  const setTime = (expiresIn) => {
+    if (!expiresIn) {
+      return;
+    }
     setTimeout(() => {
-      console.log("se refresco");
-      console.log("token en time",token)
       refreshToken();
-    }, 900 * 1000 - 6000);
+    }, expiresIn * 1000 - 6000); 
   };
+  
   // Función para refrescar el token
   const refreshToken = async () => {
     try {
       const res = await apiClient.get("/refresh");
       setToken(res.data.token);
       setExpiresIn(res.data.expiresIn);
-      console.log("token login en refresh",token)
-      setTime();
+      setTime(res.data.expiresIn); 
     } catch (error) {
       console.error(error);
       console.log("No ingreso 🤦‍♀️🤦‍♀️");

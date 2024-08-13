@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const SelectOption = ({ data = [], value, title, onChange }) => {
+const SelectOption = ({ data = [], value = '', title, onChange }) => {
   return (
     <div className="bg-white p-5">
       <div className="relative bg-inherit">
@@ -33,8 +33,8 @@ const SelectOption = ({ data = [], value, title, onChange }) => {
 SelectOption.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      name: PropTypes.string
     })
   ).isRequired,
   title: PropTypes.string.isRequired,
