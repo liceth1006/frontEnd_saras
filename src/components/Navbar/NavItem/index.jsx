@@ -4,7 +4,7 @@ import { useAuth } from "../../../contexts/AuthContext.jsx";
 const NavItem = ({ items, path,setIsOpen }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const current = location.pathname.split("/")[2];
+  const current = decodeURIComponent(location.pathname.split('/')[2]);
   const { logout } = useAuth();
 
   const handleLogout = async () => {
@@ -25,7 +25,7 @@ const NavItem = ({ items, path,setIsOpen }) => {
               handleClick(item.name);
             }}
             className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
-              current === item.name ? "bg-red-500" : ""
+              current === item.name ? "bg-secondary-color text-white" : ""
             }`}
           >
             <i className={item.icon} />
@@ -34,7 +34,7 @@ const NavItem = ({ items, path,setIsOpen }) => {
         ))}
         <li
          className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
-          current === "salir" ? "bg-red-500" : ""
+          current === "salir" ? "bg-secondary-color text-white" : ""
         }`}
         >
         <button onClick={handleLogout}> <i className="fa-solid fa-arrow-right-to-bracket" />

@@ -31,7 +31,7 @@ const Navbar = ({ items, path }) => {
       </div>
       <aside
         id="default-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white transition-transform transform ${
+        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-background-secondary transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } sm:translate-x-0 overflow-y-auto`}
         aria-label="Sidebar"
@@ -39,16 +39,16 @@ const Navbar = ({ items, path }) => {
         <div className="h-full px-3 py-4  ">
           <div className="h-full px-3 py-4 mb-6 ">
             <Logo title="SARAS" />
-            {console.log(profileData)}
+
             <Profile
-             image="imagen"
+              image="imagen"
               name={profileData.per_name}
               lastname={profileData.per_lastname}
               email={profileData.use_mail}
-              
             />
+            <div className="pb-5"></div>
+
             <NavItem items={items} setIsOpen={setIsOpen} path={path} />
-            
           </div>
         </div>
       </aside>

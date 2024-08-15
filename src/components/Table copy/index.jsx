@@ -37,11 +37,23 @@ const Table = ({ columns, data, consulta }) => {
                       {columns.map((column, colIndex) => (
                         <td
                           key={colIndex}
-                          className="whitespace-normal break-words text-sm leading-6 font-medium text-gray-900 px-4 py-2"
+                          className="whitespace-normal break-words text-sm leading-6 font-medium text-gray-900 p-4"
                         >
-                          {
+                          {column.accessor === "actions" ? (
+                            <div className="flex items-center gap-1">
+                              <button className="p-2 rounded-full group transition-all duration-500 flex item-center">
+                                <i className="fa-solid fa-pen-to-square"></i>
+                              </button>
+                              <button className="p-2 rounded-full group transition-all duration-500 flex item-center">
+                                <i className="fa-solid fa-trash-can"></i>
+                              </button>
+                              <button className="p-2 rounded-full group transition-all duration-500 flex item-center">
+                                <i className="fa-regular fa-eye"></i>
+                              </button>
+                            </div>
+                          ) : (
                             row[column.accessor] || "N/A"
-                          }
+                          )}
                         </td>
                       ))}
                     </tr>

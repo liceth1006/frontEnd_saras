@@ -5,19 +5,23 @@ const NavbarBeneficiary = () => {
 
   const navbarItems = [
     {
-      name: "Dashboard",
-      icon:  "fa-solid fa-chart-pie"
-    },
-    {
-      name: "Información del beneficiario",
+      name: "Mis proyectos",
      icon:  "fa-solid fa-list-check"
     },
     {
-      name: "Formulario",
+      name: "formulario inversión",
      icon:  "fa-solid fa-file-pen"
     },
     {
-      name: "Formularios",
+      name: "Información del proyecto o inversión",
+     icon:  "fa-solid fa-file-pen"
+    },
+    {
+      name: "Gestión ambiental y social",
+     icon:  "fa-solid fa-file-pen"
+    },
+    {
+      name: "Capital De Trabajo",
      icon:  "fa-solid fa-file-pen"
     },
     {

@@ -2,10 +2,15 @@ import { useAuth } from "../contexts/AuthContext.jsx";
 import apiClient from "../data/apiClient.js";
 import { useState, useEffect } from "react";
 
+// URLs de los endpoints
 const URL_ACTIVITY = "/activity";
 const URL_EXCLUSIONS = "/exclusions";
 const URL_SECTOR = "/sector";
 const URL_PROJECT_TYPE = "/projectTypes";
+const URL_LOCATIONS = "/locations"; 
+const URL_LAND_USES = "/land-uses"; 
+const URL_SOIL_TYPES = "/soil-types"; 
+const URL_TYPE_CATEGORIES = "/type-categories";
 
 const usePreload = () => {
   const { token } = useAuth();
@@ -14,6 +19,10 @@ const usePreload = () => {
   const [mainActivityData, setMainActivity] = useState([]);
   const [exclusionsData, setExclusions] = useState([]);
   const [projectTypeData, setProjectType] = useState([]);
+  const [locationsData, setLocations] = useState([]); 
+  const [landUsesData, setLandUses] = useState([]); 
+  const [soilTypesData, setSoilTypes] = useState([]); 
+  const [typeCategoriesData, setTypeCategories] = useState([]); 
 
   const readData = async (url, setData) => {
     if (!token) {
@@ -38,14 +47,21 @@ const usePreload = () => {
     readData(URL_ACTIVITY, setMainActivity);
     readData(URL_EXCLUSIONS, setExclusions);
     readData(URL_SECTOR, setSector);
-    readData(URL_PROJECT_TYPE, setProjectType);
-  }, [token]); // Añadir dependencias necesarias si cambia en el futuro
-
+    readData(URL_PROJECT_TYPE, setProjectType); 
+    readData(URL_LOCATIONS, setLocations); 
+    readData(URL_LAND_USES, setLandUses); 
+    readData(URL_SOIL_TYPES, setSoilTypes); 
+    readData(URL_TYPE_CATEGORIES, setTypeCategories); 
+  }, [token]); 
   return {
     mainActivityData,
     exclusionsData,
     sectorData,
-    projectTypeData
+    projectTypeData,
+    locationsData, 
+    landUsesData, 
+    soilTypesData, 
+    typeCategoriesData 
   };
 };
 

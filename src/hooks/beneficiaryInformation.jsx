@@ -25,7 +25,6 @@ const useBeneficiaryInfConnection = () => {
       // Mapea los datos recibidos
       return data.map((item) => ({
         bene_info_id: item.bene_info_id,
-        type_name: item.type_name,
         company_name: item.company_name,
         sector_name: item.sector_name,
         acti_name: item.acti_name,
@@ -45,7 +44,6 @@ const useBeneficiaryInfConnection = () => {
     company_description,
     resources,
     sector_id,
-    project_types_id,
     credit_value
   ) => {
     const userId = sessionStorage.getItem("id");
@@ -63,7 +61,6 @@ const useBeneficiaryInfConnection = () => {
           company_description: company_description,
           resources: resources,
           sector_id: sector_id,
-          project_types_id: project_types_id,
           credit_value:credit_value
         },
         {

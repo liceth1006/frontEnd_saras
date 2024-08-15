@@ -1,12 +1,12 @@
 :root {
   /* https://coolors.co/a8d5e2-f9a620-ffd449-548c2f-104911 */
   /* Colores de fondo */
-  --background-primary-color: #d4d4d4; /* Fondo principal */
-  --background-secondary-color: #F4E285; /* Fondo secundario */
+  --background-primary-color: #ffffff; /* Fondo principal */
+  --background-secondary-color: #dbf5ff; /* Fondo secundario */
 
   /* Colores de texto */
   --text-primary-color: #041d34; /* Texto principal */
-  --text-secondary-color: #00203d; /* Texto secundario */
+  --text-secondary-color: #005e80; /* Texto secundario */
   --otter-subtle: #00203d;
   /* Colores de botones */
   --button-primary-background-color: #F9A620; /* Fondo del botón primario */

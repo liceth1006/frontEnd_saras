@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import NavbarBeneficiary from "../Beneficiary/NavbarBeneficiary";
-import Dashboard from "../../pages/Beneficiary/Dashboard";
 import Projects from "../../pages/Beneficiary/Projects";
 import Form from "../../pages/Beneficiary/Form";
-import Questions from "../../pages/Beneficiary/Questions"
+import FormEnvironmentalManagement from '../../components/Beneficiary/FormEnvironmentalManagement'
+import FormInvestmentProject from '../../components/Beneficiary/FormInvestment'
+import Questions from "../../pages/Beneficiary/Questions";
 import NotFound from "../../pages/NotFound";
 
 const BeneficiaryLayout = () => {
@@ -12,33 +13,38 @@ const BeneficiaryLayout = () => {
 
   let Component;
   switch (itemName) {
-    case "Dashboard":
-      Component = Dashboard;
-      break;
-    case  "Información del beneficiario":
+    case "Mis proyectos":
       Component = Projects;
       break;
-      case "Formulario":
+    case "formulario inversión":
       Component = Form;
       break;
-      case "Formularios":
-        Component = Questions;
+      case "Información del proyecto o inversión":
+        Component = FormInvestmentProject;
         break;
+      case "Gestión ambiental y social":
+        Component = FormEnvironmentalManagement;
+        break;
+    case "proyecto o inversión":
+      Component = Questions;
+      break;
+    case "Capital De Trabajo":
+      Component = Form;
+      break;
     default:
       // eslint-disable-next-line react/display-name
       Component = () => <NotFound path="/beneficiary/Dashboard" />;
-   
   }
 
   return (
     <div>
       <NavbarBeneficiary />
-      <div className="p-4 sm:ml-64">
-          <main>
-            <Component />
-          </main>
-        </div>
+      <div className="sm:ml-64">
+        <main>
+          <Component />
+        </main>
       </div>
+    </div>
   );
 };
 

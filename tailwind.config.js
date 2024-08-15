@@ -21,6 +21,7 @@ export default {
     extend: {
       colors: {
         "background-secondary": "var(--background-secondary-color)",
+        "secondary-color": "var( --text-secondary-color)",
         "background-primary": "var( --background-primary-color)",
         'subtle': "var(--otter-subtle)",
         'btn-primary-color':'var(--button-primary-background-color)',
