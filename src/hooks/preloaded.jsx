@@ -11,6 +11,7 @@ const URL_LOCATIONS = "/locations";
 const URL_LAND_USES = "/land-uses"; 
 const URL_SOIL_TYPES = "/soil-types"; 
 const URL_TYPE_CATEGORIES = "/type-categories";
+const URL_AREAS_INTEREST = "/areas-of-interest"
 
 const usePreload = () => {
   const { token } = useAuth();
@@ -23,6 +24,7 @@ const usePreload = () => {
   const [landUsesData, setLandUses] = useState([]); 
   const [soilTypesData, setSoilTypes] = useState([]); 
   const [typeCategoriesData, setTypeCategories] = useState([]); 
+  const [areaInterestData, setAreaInterest] = useState([]);
 
   const readData = async (url, setData) => {
     if (!token) {
@@ -52,6 +54,7 @@ const usePreload = () => {
     readData(URL_LAND_USES, setLandUses); 
     readData(URL_SOIL_TYPES, setSoilTypes); 
     readData(URL_TYPE_CATEGORIES, setTypeCategories); 
+    readData(URL_AREAS_INTEREST,setAreaInterest)
   }, [token]); 
   return {
     mainActivityData,
@@ -60,8 +63,9 @@ const usePreload = () => {
     projectTypeData,
     locationsData, 
     landUsesData, 
-    soilTypesData, 
-    typeCategoriesData 
+    soilTypesData,
+    typeCategoriesData,
+    areaInterestData 
   };
 };
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from 'sweetalert2';
 import FormBeneficiaryInfo from "../../../components/Beneficiary/FormBeneficiaryInfo";
 import FormInvestmentProject from "../../../components/Beneficiary/FormInvestment/index.jsx";
 import FormEnvironmentalManagement from "../../../components/Beneficiary/FormEnvironmentalManagement";
@@ -19,10 +20,14 @@ import ProjectEmissionsWaste from "../../../components/Beneficiary/ProjectEmissi
 import useProjectInputsConnection from "../../../hooks/projectInputs.jsx";
 import FormProjectInputs from "../../../components/Beneficiary/FormProjectInputs/index.jsx";
 import useProjectEmissionsWasteConnection from '../../../hooks/projectEmissionsWaste.jsx'
+import FormProjectAreas from "../../../components/Beneficiary/FormProjectAreas/index.jsx";
+import useProjectAreas from '../../../hooks/projectAreas.jsx'
+import { validateExclusions,validateSection0, validateSection1,validateSection2,validateSection3,validateSection4,validateSection5,validateSection6,validateSection7,validateSection8,validateSection9  } from '../../../utils/validations.js';
 
 const Form = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({selectedAreas: [],
+    projectAreas: "",});
 
   const { postBeneficiaryInf } = useBeneficiaryInfConnection();
   const { postProjectPermits } = useProjectPermitsConnection();
@@ -36,13 +41,72 @@ const Form = () => {
   const { postCommunityHealthSafety } = useCommunityHealthSafetyConnection();
   const { postProjectInputs } = useProjectInputsConnection();
   const { postProjectEmissionsWaste } = useProjectEmissionsWasteConnection();
+  const { postProjectAreas } = useProjectAreas();
+
+  
   const handleNext = () => {
-    if (currentSection === 0) {
-      // Save data from the current section to formData
-      setFormData((prevData) => ({ ...prevData, ...formData }));
+
+    // Validar si se ha seleccionado una exclusión
+    if (validateExclusions(formData)) {
+      return; // Detener la navegación si hay una exclusión
     }
-    setCurrentSection((prevSection) => prevSection + 1);
-  };
+
+    let isValid = true;
+  
+     // Validar la sección actual
+     switch (currentSection) {
+      case 0:
+        isValid = validateSection0(formData);
+        break;
+      case 1:
+        isValid = validateSection1(formData);
+        break;
+      case 2:
+        isValid = validateSection2(formData);
+        break;
+      case 3:
+        isValid = validateSection3(formData);
+        break;
+      case 4:
+        isValid = validateSection4(formData);
+        break;
+      case 5:
+        isValid = validateSection5(formData);
+        break;
+      case 6:
+        isValid = validateSection6(formData);
+        break;
+      case 7:
+        isValid = validateSection7(formData);
+        break;
+      case 8:
+        isValid = validateSection8(formData);
+        break;
+      case 9:
+        isValid = validateSection9(formData);
+        break;
+      // case 10:
+      //   isValid = validateSection10(formData);
+      //   break;
+      default:
+        isValid = false;
+    }
+
+    if (isValid) {
+      setFormData((prevData) => ({ ...prevData, ...formData }));
+      setCurrentSection((prevSection) => prevSection + 1);
+    } else {
+      Swal.fire({
+        title: "Campos incompletos",
+        text: "Por favor, complete todos los campos requeridos antes de continuar.",
+        icon: "warning",
+        confirmButtonText: "Entendido"
+      });
+    }
+  }
+
+
+
 
   const handleBack = () => {
     setCurrentSection((prevSection) => prevSection - 1);
@@ -212,6 +276,21 @@ const Form = () => {
         formData.sexual_exploitation_reports,
         formData.lacks_gender_equality_policies
       );
+
+      for (const area of formData.selectedAreas) {
+        const response = await postProjectAreas(inveProj, area.area_id);
+        console.log("Respuesta de la API para área:", response);
+      }
+
+       // Mostrar la alerta SweetAlert2 al finalizar con éxito
+    Swal.fire({
+      title: "Éxito",
+      text: "¡Los datos se han enviado correctamente!",
+      icon: "success"
+    });
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    window.location.href = "Mis%20proyectos";
+
     } catch (error) {
       // Log detailed error information
       console.log(error);
@@ -219,6 +298,11 @@ const Form = () => {
         "Error al enviar los datos:",
         error.response ? error.response.data : error.message
       );
+      Swal.fire({
+        title: "Error",
+        text: "Ocurrió un error al enviar los datos. Por favor, inténtalo de nuevo.",
+        icon: "error"
+      });
     }
   };
 
@@ -241,7 +325,7 @@ const Form = () => {
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-              GESTIÓN AMBIENTAL Y SOCIAL DEL BENEFICIARIO DEL CRÉDITO
+            INFORMACIÓN DEL PROYECTO O INVERSIÓN
             </h2>
           </div>
           <FormInvestmentProject
@@ -255,7 +339,7 @@ const Form = () => {
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-              INFORMACIÓN GENERAL DEL BENEFICIARIO DEL CRÉDITO
+            GESTIÓN AMBIENTAL Y SOCIAL DEL BENEFICIARIO DEL CRÉDITO
             </h2>
           </div>
           <FormEnvironmentalManagement
@@ -350,6 +434,17 @@ const Form = () => {
           <FormGenderIssues formData={formData} setFormData={setFormData} />
         </div>
       )}
+        {currentSection === 10 && (
+        <div>
+          <div className="border-b-2 border-secondary-color py-4 px-5">
+            <h3 className="font-semibold">sección</h3>
+            <h2 className="text-2xl font-bold text-secondary-color">
+            ZONAS AFECTADAS POR EL PROYECTO/INVERSIÓN 
+            </h2>
+          </div>
+          <FormProjectAreas formData={formData} setFormData={setFormData} />
+        </div>
+      )}
       {/* {currentSection === 10 && (
         <div>
           <div className="border-b-2 border-secondary-color py-4 px-5">
@@ -371,7 +466,7 @@ const Form = () => {
             Atrás
           </button>
         )}
-        {currentSection < 9 && (
+        {currentSection < 10 && (
           <button
             onClick={handleNext}
             className="px-4 py-2 bg-blue-500 text-white rounded"
@@ -379,7 +474,7 @@ const Form = () => {
             Siguiente
           </button>
         )}
-        {currentSection === 9 && (
+        {currentSection === 10 && (
           <button
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded"

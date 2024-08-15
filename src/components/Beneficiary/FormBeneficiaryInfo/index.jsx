@@ -146,6 +146,7 @@ const FormBeneficiaryInfo = ({ formData, setFormData }) => {
                     onChange={input.setValue}
                     placeholder={input.placeholder}
                     data={input.options}
+                    required
                   />
                 )
               )}

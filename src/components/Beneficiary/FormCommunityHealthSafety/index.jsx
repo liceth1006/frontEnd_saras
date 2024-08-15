@@ -52,10 +52,9 @@ const FormCommunityHealthSafety = ({ formData, setFormData }) => {
       id: "takes_covid19_precautions",
       question: "¿Se toman en cuenta medidas de prevención contra el COVID-19 y otras enfermedades contagiosas?",
     },
-];
+  ];
 
-
-
+  // Maneja el cambio en el select
   const handleSelectChange = (id) => (event) => {
     const { value } = event.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
@@ -66,6 +65,7 @@ const FormCommunityHealthSafety = ({ formData, setFormData }) => {
     { header: "", accessor: "answer" },
   ];
 
+  // Mapea las preguntas a los datos requeridos por la tabla
   const data = questions.map((q) => ({
     ...q,
     answer: (
