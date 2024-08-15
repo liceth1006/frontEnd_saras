@@ -161,11 +161,7 @@ const FormInvestmentProject = ({ formData, setFormData }) => {
     <div className="mt-5 flex flex-col items-center">
       <div className="w-full flex-1 mt-5">
         <div className="flex flex-col items-center">
-          <div className="my-5 border-b text-center mb-10">
-            <h2 className="leading-none px-2 inline-block text-2xl tracking-wide font-bold bg-white transform translate-y-1/2">
-              INFORMACIÓN DEL PROYECTO DE INVERSIÓN
-            </h2>
-          </div>
+         
           <form className="w-full" >
             <div className="grid grid-cols-none md:grid-cols-2 gap-4">
               {inputs.map((input, index) =>

@@ -4,11 +4,21 @@ import FormInvestmentProject from "../../../components/Beneficiary/FormInvestmen
 import FormEnvironmentalManagement from "../../../components/Beneficiary/FormEnvironmentalManagement";
 import useBeneficiaryInfConnection from "../../../hooks/beneficiaryInformation";
 import useInvestmentProject from "../../../hooks/InvestmentProject.jsx";
-import useProjectPermitsConnection from '../../../hooks/projectPermitsConnection.jsx'
+import useProjectPermitsConnection from "../../../hooks/projectPermitsConnection.jsx";
 import useEnvironmentalManagementConnection from "../../../hooks/useEnvironmentalManagement.jsx";
-import useEnvironmentalSocialImpactConnection from '../../../hooks/environmentalSocialImpact.jsx'
+import useEnvironmentalSocialImpactConnection from "../../../hooks/environmentalSocialImpact.jsx";
 import FormProjectPermits from "../../../components/Beneficiary/FormProjectPermits/index.jsx";
 import FormEnvironmentalSocialImpact from "../../../components/Beneficiary/FormEnvironmentalSocialImpact/index.jsx";
+import useGenderIssuesConnection from "../../../hooks/genderIssues.jsx";
+import FormGenderIssues from "../../../components/Beneficiary/FormGenderIssues/index.jsx";
+import useLaborConditionsConnection from "../../../hooks/laborConditions.jsx";
+import useCommunityHealthSafetyConnection from "../../../hooks/communityHealthSafety.jsx";
+import FormLaborConditions from "../../../components/Beneficiary/FormLaborConditions/index.jsx";
+import FormCommunityHealthSafety from "../../../components/Beneficiary/FormCommunityHealthSafety/index.jsx";
+import ProjectEmissionsWaste from "../../../components/Beneficiary/ProjectEmissionsWaste/index.jsx";
+import useProjectInputsConnection from "../../../hooks/projectInputs.jsx";
+import FormProjectInputs from "../../../components/Beneficiary/FormProjectInputs/index.jsx";
+import useProjectEmissionsWasteConnection from '../../../hooks/projectEmissionsWaste.jsx'
 
 const Form = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -17,10 +27,15 @@ const Form = () => {
   const { postBeneficiaryInf } = useBeneficiaryInfConnection();
   const { postProjectPermits } = useProjectPermitsConnection();
   const { postInvestmentProject } = useInvestmentProject();
-  const { postEnvironmentalSocialImpact } = useEnvironmentalSocialImpactConnection();
+  const { postEnvironmentalSocialImpact } =
+    useEnvironmentalSocialImpactConnection();
   const { postEnvironmentalManagement } =
     useEnvironmentalManagementConnection();
-
+  const { postGenderIssues } = useGenderIssuesConnection();
+  const { postLaborConditions } = useLaborConditionsConnection();
+  const { postCommunityHealthSafety } = useCommunityHealthSafetyConnection();
+  const { postProjectInputs } = useProjectInputsConnection();
+  const { postProjectEmissionsWaste } = useProjectEmissionsWasteConnection();
   const handleNext = () => {
     if (currentSection === 0) {
       // Save data from the current section to formData
@@ -73,6 +88,7 @@ const Form = () => {
         formData.consultationProcedure,
         formData.publicAccessStudies
       );
+
       // Check if beneficiaryResponse contains the required ID
       if (!investmentResponse || !investmentResponse.investment_project_id) {
         throw new Error("Beneficiary response does not contain an ID.");
@@ -102,8 +118,7 @@ const Form = () => {
         inveProj,
         formData.requires_environmental_diagnosis,
         formData.requires_environmental_license,
-        formData.requires_other_permits,
-        
+        formData.requires_other_permits
       );
 
       await postEnvironmentalSocialImpact(
@@ -112,7 +127,91 @@ const Form = () => {
         formData.impacts_on_water_air_soil,
         formData.impacts_on_flora_fauna_landscape,
         formData.impacts_on_social_labour
-      )
+      );
+     await postProjectInputs(
+        inveProj,
+        formData.water_source_for_project,
+        formData.water_source_for_workers,
+        formData.efficient_water_use_measures,
+        formData.uses_chemical_or_hazardous_products,
+        formData.uses_pesticides,
+        formData.requires_materials_from_quarries,
+        formData.type_of_lighting,
+        formData.energy_source,
+        formData.efficient_energy_use_measures,
+        formData.efficient_use_of_other_resources,
+        formData.integrates_clean_production_principles
+      );
+
+      const response = await postProjectEmissionsWaste(
+        inveProj,
+        formData.affected_by_natural_events,
+        formData.generates_air_emissions,
+        formData.measures_carbon_footprint,
+        formData.has_gei_reduction_measures,
+        formData.considers_climate_change_adaptation,
+        formData.generates_wastewater,
+        formData.measures_water_footprint,
+        formData.generates_hazardous_hospital_waste,
+        formData.generates_ordinary_demolition_waste,
+        formData.considers_historical_contamination,
+        formData.considers_resource_efficiency_indicators
+      );
+      
+      console.log("Respuesta de la API:", response);
+
+      await postCommunityHealthSafety(
+        inveProj,
+        formData.avoids_chemicals_pesticides,
+        formData.avoids_air_contaminants_dust,
+        formData.avoids_dismantling_old_infrastructure,
+        formData.avoids_vehicle_movement,
+        formData.avoids_unqualified_security,
+        formData.trained_security_personnel,
+        formData.avoids_large_water_use,
+        formData.has_complaint_mechanism,
+        formData.avoids_unpleasant_odors,
+        formData.avoids_excessive_noise,
+        formData.has_community_engagement_mechanisms,
+        formData.takes_covid19_precautions
+      );
+    
+
+      await postLaborConditions(
+        beneInfoId,
+        formData.hiring_non_discriminatory,
+        formData.equal_labor_conditions,
+        formData.workers_know_rights,
+        formData.training_program,
+        formData.temporary_workers_min_salary,
+        formData.respect_union_agreements,
+        formData.foreign_workers_equal_conditions,
+        formData.accommodation_services_verified,
+        formData.forced_labor_trafficking_check,
+        formData.age_verification,
+        formData.child_labor_risk_management,
+        formData.work_permits_usage,
+        formData.pqr_mechanism,
+        formData.avoids_mass_terminations,
+        formData.individual_termination_compliance,
+        formData.accidents_incidents_recorded,
+        formData.workers_affiliated,
+        formData.workers_know_safety_hazards,
+        formData.emergency_procedures,
+        formData.emergency_instructions_clear,
+        formData.sg_sst_compliant
+      );
+
+      await postGenderIssues(
+        beneInfoId,
+        formData.discriminates_gender_benefits,
+        formData.sexual_abuse_reports,
+        formData.sexual_harassment_reports,
+        formData.discrimination_against_women_reports,
+        formData.discrimination_orientation_gender_reports,
+        formData.sexual_exploitation_reports,
+        formData.lacks_gender_equality_policies
+      );
     } catch (error) {
       // Log detailed error information
       console.log(error);
@@ -142,7 +241,7 @@ const Form = () => {
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            GESTIÓN AMBIENTAL Y SOCIAL DEL BENEFICIARIO DEL CRÉDITO
+              GESTIÓN AMBIENTAL Y SOCIAL DEL BENEFICIARIO DEL CRÉDITO
             </h2>
           </div>
           <FormInvestmentProject
@@ -165,26 +264,24 @@ const Form = () => {
           />
         </div>
       )}
-       {currentSection === 3 && (
+      {currentSection === 3 && (
         <div>
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            PERMISOS AMBIENTALES Y SOCIALES DEL PROYECTO O INVERSIÓN
+              PERMISOS AMBIENTALES Y SOCIALES DEL PROYECTO O INVERSIÓN
             </h2>
           </div>
-          <FormProjectPermits
-            formData={formData}
-            setFormData={setFormData}
-          />
+          <FormProjectPermits formData={formData} setFormData={setFormData} />
         </div>
       )}
-       {currentSection === 4 && (
+      {currentSection === 4 && (
         <div>
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            IMPACTOS Y MEDIDAS DE MANEJO AMBIENTAL Y SOCIAL DEL PROYECTO O INVERSIÓN
+              IMPACTOS Y MEDIDAS DE MANEJO AMBIENTAL Y SOCIAL DEL PROYECTO O
+              INVERSIÓN
             </h2>
           </div>
           <FormEnvironmentalSocialImpact
@@ -198,13 +295,10 @@ const Form = () => {
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            INSUMOS UTILIZADOS DEL PROYECTO O INVERSIÓN
+              INSUMOS UTILIZADOS DEL PROYECTO O INVERSIÓN
             </h2>
           </div>
-          <FormEnvironmentalSocialImpact
-            formData={formData}
-            setFormData={setFormData}
-          />
+          <FormProjectInputs formData={formData} setFormData={setFormData} />
         </div>
       )}
       {currentSection === 6 && (
@@ -212,10 +306,11 @@ const Form = () => {
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            EMISIONES, VERTIMIENTOS Y RESIDUOS SOLIDOS DEL PROYECTO O INVERSIÓN
+              EMISIONES, VERTIMIENTOS Y RESIDUOS SOLIDOS DEL PROYECTO O
+              INVERSIÓN
             </h2>
           </div>
-          <FormEnvironmentalSocialImpact
+          <ProjectEmissionsWaste
             formData={formData}
             setFormData={setFormData}
           />
@@ -226,10 +321,10 @@ const Form = () => {
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            SALUD Y SEGURIDAD DE LA COMUNIDAD
+              SALUD Y SEGURIDAD DE LA COMUNIDAD
             </h2>
           </div>
-          <FormEnvironmentalSocialImpact
+          <FormCommunityHealthSafety
             formData={formData}
             setFormData={setFormData}
           />
@@ -240,44 +335,32 @@ const Form = () => {
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            TRABAJO Y CONDICIONES LABORALES
+              TRABAJO Y CONDICIONES LABORALES
             </h2>
           </div>
-          <FormEnvironmentalSocialImpact
-            formData={formData}
-            setFormData={setFormData}
-          />
+          <FormLaborConditions formData={formData} setFormData={setFormData} />
         </div>
       )}
       {currentSection === 9 && (
         <div>
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
-            <h2 className="text-2xl font-bold text-secondary-color">
-            GÉNERO
-            </h2>
+            <h2 className="text-2xl font-bold text-secondary-color">GÉNERO</h2>
           </div>
-          <FormEnvironmentalSocialImpact
-            formData={formData}
-            setFormData={setFormData}
-          />
+          <FormGenderIssues formData={formData} setFormData={setFormData} />
         </div>
       )}
-      {currentSection === 10 && (
+      {/* {currentSection === 10 && (
         <div>
           <div className="border-b-2 border-secondary-color py-4 px-5">
             <h3 className="font-semibold">sección</h3>
             <h2 className="text-2xl font-bold text-secondary-color">
-            DOCUMENTACIÓN SOPORTE  DEL PROYECTO O INVERSIÓN
+              DOCUMENTACIÓN SOPORTE DEL PROYECTO O INVERSIÓN
             </h2>
           </div>
-          <FormProjectPermits
-            formData={formData}
-            setFormData={setFormData}
-          />
+          <FormProjectPermits formData={formData} setFormData={setFormData} />
         </div>
-      )}
-      
+      )} */}
 
       <div className="flex justify-center space-x-4 mt-5 p-6 ">
         {currentSection > 0 && (
@@ -288,7 +371,7 @@ const Form = () => {
             Atrás
           </button>
         )}
-        {currentSection < 10 && (
+        {currentSection < 9 && (
           <button
             onClick={handleNext}
             className="px-4 py-2 bg-blue-500 text-white rounded"
@@ -296,7 +379,7 @@ const Form = () => {
             Siguiente
           </button>
         )}
-        {currentSection === 10 && (
+        {currentSection === 9 && (
           <button
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded"
