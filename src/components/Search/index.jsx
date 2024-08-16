@@ -15,7 +15,7 @@ const Search = ({ type, placeholder,setConsulta }) => {
       <input
         placeholder={placeholder}
         ref={cajaConsulta}
-        className="input shadow-lg focus:border-2 border-gray-300 px-5 py-3 rounded-xl w-80 transition-all focus:w-96 outline-none"
+        className="input shadow-lg border-2 focus:border-2 border-blue-950 px-5 py-3 rounded-xl w-80 transition-all focus:w-96 outline-none"
         name="search"
         type={type}
         onChange={handleIconClick}

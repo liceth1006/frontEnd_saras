@@ -6,7 +6,10 @@ export const validateExclusions = (formData) => {
       title: "Exclusión Seleccionada",
       text: "No puede continuar con el formulario porque ha seleccionado una exclusión. Por favor, comuníquese con un asesor para obtener más información.",
       icon: "warning",
-      confirmButtonText: "Entendido"
+      confirmButtonText: "Entendido",
+      customClass: {
+        confirmButton: 'custom-button' 
+    }
     });
     return true; // Indica que se ha seleccionado una exclusión
   }

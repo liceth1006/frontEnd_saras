@@ -7,14 +7,14 @@ const Table = ({ columns, data, consulta }) => {
       <div className="overflow-x-auto">
         <div className="min-w-full inline-block align-middle">
           <div className="overflow-hidden">
-            <table className="min-w-full">
+            <table className="min-w-full m-2">
               <thead>
-                <tr className="bg-gray-50">
+                <tr className="bg-gray-200 ">
                   {columns.map((column, index) => (
                     <th
                       key={index}
                       scope="col"
-                      className="p-5 text-left text-sm  font-semibold text-gray-900 capitalize"
+                      className="p-5 text-center  font-semibold text-gray-900 capitalize"
                     >
                       {column.header}
                     </th>

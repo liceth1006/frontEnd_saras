@@ -1,4 +1,5 @@
 import Profile from "../Profile";
+import foto from '../../assets/images/foto.jpg'
 import PropTypes from "prop-types";
 import MenuIcon from "./IconHamburger/MenuIcon";
 import CloseIcon from "./IconHamburger/CloseIcon";
@@ -21,7 +22,7 @@ const Navbar = ({ items, path }) => {
 
   return (
     <>
-      <div className="relative z-50">
+      <div className="relative z-50 ">
         <button
           onClick={handleMenu}
           className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -31,17 +32,17 @@ const Navbar = ({ items, path }) => {
       </div>
       <aside
         id="default-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-background-secondary transition-transform transform ${
+        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-gradient-to-br from-sky-900 via-sky-950 to-blue-900  transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } sm:translate-x-0 overflow-y-auto`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4  ">
-          <div className="h-full px-3 py-4 mb-6 ">
-            <Logo title="SARAS" />
+          <div className="h-full px-3 py-4 mb-6 text-white">
+            <Logo title="EcoGestión" />
 
             <Profile
-              image="imagen"
+              image={foto}
               name={profileData.per_name}
               lastname={profileData.per_lastname}
               email={profileData.use_mail}

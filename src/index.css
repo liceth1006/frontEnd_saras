@@ -2,15 +2,15 @@
   /* https://coolors.co/a8d5e2-f9a620-ffd449-548c2f-104911 */
   /* Colores de fondo */
   --background-primary-color: #ffffff; /* Fondo principal */
-  --background-secondary-color: #dbf5ff; /* Fondo secundario */
-
+  --background-secondary-color: #ffffff; /* Fondo secundario */
+--background-navbar:#d4d9e4;
   /* Colores de texto */
   --text-primary-color: #041d34; /* Texto principal */
   --text-secondary-color: #005e80; /* Texto secundario */
   --otter-subtle: #00203d;
   /* Colores de botones */
   --button-primary-background-color: #F9A620; /* Fondo del botón primario */
-  --button-primary-hover: #104911;
+  --button-primary-hover: #12239E;
   --button-primary-text-color: #ffffff; /* Texto del botón primario */
   --button-secondary-background-color: #A8D5E2; /* Fondo del botón secundario */
   --button-secondary-text-color: #ffffff; /* Texto del botón secundario */
@@ -181,3 +181,13 @@ input[type="text"]::-webkit-clear-button {
   width: 0;
   height: 0;
 }
+
+.custom-button {
+  background-color: #12239E;
+  border-color: #12239E;
+}
+.custom-button:hover {
+  background-color: #0e1c7d; /* Un color más oscuro para el hover */
+  border-color: #0e1c7d;
+}
+

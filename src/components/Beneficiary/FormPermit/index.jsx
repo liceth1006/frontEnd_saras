@@ -157,7 +157,7 @@ const FormPermit = ({ formData, setFormData }) => {
       <div className="w-full flex-1 mt-5">
         <div className="flex flex-col items-center">
           <form className="w-full" onSubmit={handleAddPermit}>
-            <div className="grid grid-cols-none md:grid-cols gap-4">
+            <div className="grid grid-cols-2 md:grid-cols gap-4">
               {inputs.map((input, index) =>
                 input.type === "select" ? (
                   <SelectOption
@@ -180,21 +180,20 @@ const FormPermit = ({ formData, setFormData }) => {
                   />
                 )
               )}
-              <div className="flex justify-center space-x-4 mt-5 p-6 ">
-                <button
-                  type="submit"
-                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                >
-                  Agregar
-                </button>
-              </div>
+            </div>
+            <div className="flex justify-center space-x-4 mt-5 p-6 ">
+              <button
+                type="submit"
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+              >
+                Agregar
+              </button>
             </div>
           </form>
           <div className="mt-5 w-full">
             <div className="px-10">
               <h3 className="text-lg font-semibold">Permisos Seleccionados:</h3>
               <ul className="mt-2">
-                {console.log(selectedPermit)}
                 {selectedPermit.map((item) => (
                   <li
                     key={item.perm_id}

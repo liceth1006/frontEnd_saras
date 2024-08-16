@@ -1,4 +1,5 @@
 import Logo from "../components/CommonUI/Logo";
+import Img3 from '../assets/images/img3.jpg'
 import { NavLink } from "react-router-dom";
 import { FiUserCheck } from "react-icons/fi";
 import { LuUserPlus } from "react-icons/lu";
@@ -8,18 +9,17 @@ function Home() {
     <>
       <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
-          <div className="flex-1 bg-background-secondary rounded-l-lg text-center hidden lg:flex">
-            <div
-              className="m-12 xl:m-16 w-full rounded-lg bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage:
-                  "url('https://img.freepik.com/foto-gratis/planta-ahuecamiento-manos-salvar-medio-ambiente_53876-129538.jpg?t=st=1722727322~exp=1722730922~hmac=559a6e31cd25bce474160a308fbb508f0daf54212a6d5dff9241d1c72ffae20a&w=740')",
-              }}
-            ></div>
+          <div
+          style={{
+            backgroundImage:
+              `url(${Img3})`,
+          }}
+          className="flex-1  bg-cover bg-center bg-no-repeat rounded-l-lg text-center hidden lg:flex">
+         
           </div>
           <div className="lg:w-1/2 xl:w-6/12 p-6 sm:p-12">
             <div>
-            <Logo title="SARAS" slogan="Solución Integral para la Gestión de SARAS" />
+            <Logo title="EcoGestión" slogan="Solución Integral para la Gestión de SARAS" />
             </div>
             <div className="mt-12 flex flex-col items-center">
               <div className="w-full flex-1 mt-8">
@@ -46,7 +46,7 @@ function Home() {
 
                 <div className="mx-auto ">
                   <NavLink to="/register">
-                    <Button className= "bg-btn-secondary-color hover:bg-btn-primary-hover hover:text-white">
+                    <Button className= "border-2 border-btn-primary-hover hover:bg-btn-primary-hover hover:text-white">
                       <LuUserPlus className="mr-2" />
                       <span className="ml-">Crea una cuenta</span>
                     </Button>

@@ -1,13 +1,13 @@
 const Hero = () => {
   return (
-    <section className="p-0 m-0">
+    <section className="p-5 m-0">
       <div className="w-full max-w-6xl mt-20">
         
       </div>
-      <div className="bg-gradient-to-br from-sky-950 via-sky-800 to-blue-500 my-3  rounded-2xl w-full text-white flex items-center justify-between max-w-6xl mx-auto relative">
+      <div className="bg-gradient-to-r from-gray-200 to-cyan-900 my-3  rounded-2xl w-full text-white flex items-center justify-between max-w-6xl mx-auto relative">
         <div className="flex flex-col gap-6">
           <div className="sm:p-10">
-            <span className="text-4xl text-white font-semibold">
+            <span className="text-4xl text-blue-950 font-semibold">
               Mis proyectos
             </span>
           </div>

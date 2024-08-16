@@ -6,6 +6,7 @@ import InputText from "../../CommonUI/InputText.jsx";
 import Button from "../../CommonUI/Button.jsx";
 import {useAuth} from "../../../contexts/AuthContext.jsx";
 import SelectOption from "../../CommonUI/SelectOption.jsx";
+import Swal from 'sweetalert2';
 
 const FormRegister = () => {
 
@@ -120,7 +121,7 @@ const FormRegister = () => {
     event.preventDefault();
 
     try {
-      await register(
+    const data=  await register(
         nombre,
         apellido,
         tipoDocumento,
@@ -131,14 +132,58 @@ const FormRegister = () => {
         email,
         password
       );
+      console.log(rol)
+      if (rol == 1) {
+        window.location.href = "beneficiary/Mis proyectos";
+    } else if (rol == 2) {
+      Swal.fire({
+        title: 'Registro en proceso',
+        text: 'En unos momentos validaremos tus datos y un administrador te dará permiso.',
+        icon: 'info',
+        customClass: {
+          confirmButton: 'custom-button'
+        }
+      });
+      await new Promise(resolve => setTimeout(resolve, 2000));
+        window.location.href = "/";
+    } else {
+        console.error(data.error);
+        Swal.fire({
+            title: 'Error',
+            text: 'El rol del usuario no es reconocido. Por favor, contacta con el soporte.',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'custom-button' 
+            }
+        });
+    }
     } catch (error) {
-      console.error("register failed:", error);
+      if (error === 'Ya existe un usuario con este correo electrónico') {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ya existe un usuario con este correo electrónico',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'custom-button'
+          }
+        });
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ya existe un usuario con este correo electrónico',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'custom-button'
+      }});
+        console.error("register failed:", error);
+
+      }
     }
   };
 
   return (
     <div className="mt-5 flex flex-col items-center">
-      <Logo title="SARAS" slogan="Solución Integral para la Gestión de SARAS" />
+      <Logo title="EcoGestión" slogan="Solución Integral para la Gestión de SARAS" />
       <div className="w-full flex-1 mt-5">
         <div className="flex flex-col items-center">
           <div className="my-5 border-b text-center mb-10">

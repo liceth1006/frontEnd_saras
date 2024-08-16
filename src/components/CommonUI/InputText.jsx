@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 
 const InputText = ({ title, type = "text", value, onChange, placeholder }) => {
   return (
-    <div className=" px-5">
+    <div className=" px-5 pt-2">
       <div className="relative bg-inherit">
-        <label className="text-sm font-medium text-gray-900 block mb-2">
+        <label className=" text-sm font-medium text-gray-900 block ">
           {title}
         </label>
         <input

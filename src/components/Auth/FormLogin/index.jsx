@@ -4,7 +4,7 @@ import { FiUserCheck } from "react-icons/fi";
 import InputText from "../../CommonUI/InputText";
 import Button from "../../CommonUI/Button";
 import { useAuth } from "../../../contexts/AuthContext.jsx";
-
+import Swal from 'sweetalert2';
 const FormLogin = () => {
   const { login,setToken } = useAuth();
   const [correo, setCorreo] = useState("");
@@ -31,30 +31,47 @@ const FormLogin = () => {
     setValue(event.target.value);
   };
 
+ 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const data = await login(correo, contrasena);
-      // Redirigir según el rol del usuario
-      console.log("esta es", data);
-      setToken(data.token)
-      if (data.userRole === "beneficiary") {
-        window.location.href = "beneficiary/Dashboard";
-      } else if (data.userRole === "employee") {
-        window.location.href = "/employee";
-      } else {
-        // Manejar errores
-        console.error(data.error);
-      }
+        const data = await login(correo, contrasena);
+        console.log("esta es", data);
+        setToken(data.token);
+        if (data.userRole === "beneficiary") {
+          window.location.href = "beneficiary/Mis proyectos";
+        } else if (data.userRole === "employee") {
+            window.location.href = "/employee";
+        } else {
+            console.error(data.error);
+            Swal.fire({
+                title: 'Error',
+                text: 'El rol del usuario no es reconocido. Por favor, contacta con el soporte.',
+                icon: 'error',
+                customClass: {
+                    confirmButton: 'custom-button' 
+                }
+            });
+        }
     } catch (error) {
-      console.error("Login failed:", error);
+        console.error("Login failed:", error);
+        Swal.fire({
+            title: 'Error de Login',
+            text: 'Por favor, revisa tus credenciales. Asegúrate de que el correo y la contraseña sean correctos.',
+            icon: 'error',
+            customClass: {
+                confirmButton: 'custom-button' 
+            }
+        });
     }
-  };
+};
+  
 
   return (
     <div className="mt-5 flex flex-col items-center">
-      <Logo title="SARAS" slogan="Solución Integral para la Gestión de SARAS" />
+      <Logo title="EcoGestión" slogan="Solución Integral para la Gestión de SARAS" />
       <div className="w-full flex-1 mt-5">
         <div className="flex flex-col items-center">
           <div className="my-5 border-b text-center mb-10">
@@ -64,6 +81,7 @@ const FormLogin = () => {
           </div>
           <form className="w-full" onSubmit={handleSubmit}>
             {inputs.map((input, index) => (
+            
               <InputText
                 key={index}
                 title={input.name}

@@ -24,8 +24,8 @@ const NavItem = ({ items, path,setIsOpen }) => {
             onClick={() => {
               handleClick(item.name);
             }}
-            className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
-              current === item.name ? "bg-secondary-color text-white" : ""
+            className={`flex items-center p-2 text-zinc-200  hover:text-gray-900 rounded-lg  hover:bg-gray-100  group ${
+              current === item.name ? "text-blue-950 font-semibold bg-background-navbar " : ""
             }`}
           >
             <i className={item.icon} />
@@ -33,7 +33,7 @@ const NavItem = ({ items, path,setIsOpen }) => {
           </li>
         ))}
         <li
-         className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
+         className={`flex items-center p-2 text-zinc-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
           current === "salir" ? "bg-secondary-color text-white" : ""
         }`}
         >

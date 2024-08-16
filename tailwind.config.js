@@ -23,10 +23,11 @@ export default {
         "background-secondary": "var(--background-secondary-color)",
         "secondary-color": "var( --text-secondary-color)",
         "background-primary": "var( --background-primary-color)",
-        'subtle': "var(--otter-subtle)",
-        'btn-primary-color':'var(--button-primary-background-color)',
-        'btn-secondary-color':'var(--button-secondary-background-color)',
-        'btn-primary-hover':'var(--button-primary-hover)'
+        subtle: "var(--otter-subtle)",
+        "btn-primary-color": "var(--button-primary-background-color)",
+        "btn-secondary-color": "var(--button-secondary-background-color)",
+        "btn-primary-hover": "var(--button-primary-hover)",
+        "background-navbar": "var(--background-navbar)",
       },
       maxWidth: {
         1800: "1800px",

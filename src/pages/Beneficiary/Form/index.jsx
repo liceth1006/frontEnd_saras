@@ -100,7 +100,10 @@ const Form = () => {
         title: "Campos incompletos",
         text: "Por favor, complete todos los campos requeridos antes de continuar.",
         icon: "warning",
-        confirmButtonText: "Entendido"
+        confirmButtonText: "Entendido",
+        customClass: {
+          confirmButton: 'custom-button' 
+      }
       });
     }
   }
@@ -286,7 +289,10 @@ const Form = () => {
     Swal.fire({
       title: "Éxito",
       text: "¡Los datos se han enviado correctamente!",
-      icon: "success"
+      icon: "success",
+      customClass: {
+        confirmButton: 'custom-button' 
+    }
     });
     await new Promise(resolve => setTimeout(resolve, 2000));
     window.location.href = "Mis%20proyectos";
@@ -301,7 +307,9 @@ const Form = () => {
       Swal.fire({
         title: "Error",
         text: "Ocurrió un error al enviar los datos. Por favor, inténtalo de nuevo.",
-        icon: "error"
+        icon: "error",customClass: {
+          confirmButton: 'custom-button' 
+      }
       });
     }
   };
