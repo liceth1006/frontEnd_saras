@@ -3,10 +3,9 @@ import { useParams } from "react-router-dom";
 import NavbarBeneficiary from "../Beneficiary/NavbarBeneficiary";
 import Projects from "../../pages/Beneficiary/Projects";
 import Form from "../../pages/Beneficiary/Form";
-import FormEnvironmentalManagement from '../../components/Beneficiary/FormEnvironmentalManagement'
-import FormInvestmentProject from '../../components/Beneficiary/FormInvestment'
-import Questions from "../../pages/Beneficiary/Questions";
+import FormEnvironmentalManagement from "../../components/Beneficiary/FormEnvironmentalManagement";
 import NotFound from "../../pages/NotFound";
+import FormCapitalProject from "../../pages/Beneficiary/FormCapitalProject";
 
 const BeneficiaryLayout = () => {
   const { itemName } = useParams();
@@ -16,20 +15,17 @@ const BeneficiaryLayout = () => {
     case "Mis proyectos":
       Component = Projects;
       break;
-    case "formulario inversión":
+    case "Formulario inversión":
       Component = Form;
       break;
-      case "Información del proyecto o inversión":
-        Component = FormInvestmentProject;
-        break;
-      case "Gestión ambiental y social":
-        Component = FormEnvironmentalManagement;
-        break;
-    case "proyecto o inversión":
-      Component = Questions;
+    case "Formulario Capital de Trabajo":
+      Component = FormCapitalProject;
       break;
-    case "Capital De Trabajo":
-      Component = Form;
+    case "Documentos":
+      Component = FormEnvironmentalManagement;
+      break;
+    case "Instructivo":
+      Component = FormEnvironmentalManagement;
       break;
     default:
       // eslint-disable-next-line react/display-name

@@ -3,11 +3,11 @@ import InputText from "../../CommonUI/InputText.jsx";
 import SelectOption from "../../CommonUI/SelectOption.jsx";
 
 const FormCreditBeneficiaryEnvironmental = ({ formData, setFormData }) => {
-  // Preguntas y opciones para respuestas de sí/no
+  // Definición de preguntas y tipos de respuestas
   const questions = [
     {
       id: "debt_substitution",
-      name: "¿Se trata de una sustitución de deuda?",
+      name: "Favor indicar si se trata de una Sustitución de Deuda:",
       type: "select",
       options: [
         { id: "Yes", name: "Sí" },
@@ -147,7 +147,22 @@ const FormCreditBeneficiaryEnvironmental = ({ formData, setFormData }) => {
 };
 
 FormCreditBeneficiaryEnvironmental.propTypes = {
-  formData: PropTypes.object.isRequired,
+  formData: PropTypes.shape({
+    debt_substitution: PropTypes.string,
+    has_environmental_department: PropTypes.string,
+    has_environmental_policies: PropTypes.string,
+    environmental_certifications: PropTypes.string,
+    known_impacts: PropTypes.string,
+    environmental_programs: PropTypes.string,
+    legal_requirements_documented: PropTypes.string,
+    public_communication: PropTypes.string,
+    public_communication_details: PropTypes.string,
+    supervision_activities: PropTypes.string,
+    accident_emergency_management: PropTypes.string,
+    labor_norms_compliance: PropTypes.string,
+    grievance_mechanism: PropTypes.string,
+    environmental_liabilities: PropTypes.string,
+  }).isRequired,
   setFormData: PropTypes.func.isRequired,
 };
 

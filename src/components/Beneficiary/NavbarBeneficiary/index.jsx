@@ -9,19 +9,15 @@ const NavbarBeneficiary = () => {
      icon:  "fa-solid fa-list-check"
     },
     {
-      name: "formulario inversión",
+      name: "Formulario inversión",
      icon:  "fa-solid fa-file-pen"
     },
     {
-      name: "Información del proyecto o inversión",
+      name: "Formulario Capital de Trabajo",
      icon:  "fa-solid fa-file-pen"
     },
     {
-      name: "Gestión ambiental y social",
-     icon:  "fa-solid fa-file-pen"
-    },
-    {
-      name: "Capital De Trabajo",
+      name: "Instructivo",
      icon:  "fa-solid fa-file-pen"
     },
     {

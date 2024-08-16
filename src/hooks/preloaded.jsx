@@ -12,6 +12,7 @@ const URL_LAND_USES = "/land-uses";
 const URL_SOIL_TYPES = "/soil-types"; 
 const URL_TYPE_CATEGORIES = "/type-categories";
 const URL_AREAS_INTEREST = "/areas-of-interest"
+const URL_PERMIT = "/environmental-permits"
 
 const usePreload = () => {
   const { token } = useAuth();
@@ -25,6 +26,7 @@ const usePreload = () => {
   const [soilTypesData, setSoilTypes] = useState([]); 
   const [typeCategoriesData, setTypeCategories] = useState([]); 
   const [areaInterestData, setAreaInterest] = useState([]);
+  const [envirPPermitsData, setEnvirPPermits] = useState([]);
 
   const readData = async (url, setData) => {
     if (!token) {
@@ -54,7 +56,8 @@ const usePreload = () => {
     readData(URL_LAND_USES, setLandUses); 
     readData(URL_SOIL_TYPES, setSoilTypes); 
     readData(URL_TYPE_CATEGORIES, setTypeCategories); 
-    readData(URL_AREAS_INTEREST,setAreaInterest)
+    readData(URL_AREAS_INTEREST,setAreaInterest);
+    readData(URL_PERMIT,setEnvirPPermits)
   }, [token]); 
   return {
     mainActivityData,
@@ -65,7 +68,8 @@ const usePreload = () => {
     landUsesData, 
     soilTypesData,
     typeCategoriesData,
-    areaInterestData 
+    areaInterestData,
+    envirPPermitsData
   };
 };
 
