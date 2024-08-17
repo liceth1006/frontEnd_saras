@@ -8,7 +8,7 @@ import EmployeeLayout from '../components/layouts/EmployeeLayout.jsx'
 import Home from '../pages/Home'
 import Login from "../pages/Auth/Login.jsx";
 import Register from "../pages/Auth/Register.jsx";
-import Employee from '../pages/Employee/Employee.jsx'
+// import Employee from '../pages/Employee/Employee.jsx'
 
 function AppRoutes() {
   return (

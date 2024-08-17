@@ -7,10 +7,9 @@ const FormFarasPage=()=>{
   const [formData, setFormData] = useState({});
   const handleNext = () => {
 
-    // Validar si se ha seleccionado una exclusión
-    if (validateExclusions(formData)) {
-      return; // Detener la navegación si hay una exclusión
-    }}
+    setFormData((prevData) => ({ ...prevData, ...formData }));
+      setCurrentSection((prevSection) => prevSection + 1);
+  }
     const handleBack = () => {
       setCurrentSection((prevSection) => prevSection - 1);
     };
@@ -34,7 +33,8 @@ const FormFarasPage=()=>{
         }
         });
       }*/
-    };  
+    }
+  }
 
   return(
     <>
@@ -80,6 +80,6 @@ const FormFarasPage=()=>{
     </>
 
       )
-}}
+}
 
 export default FormFarasPage;
