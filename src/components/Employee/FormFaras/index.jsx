@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import InputText from "../../CommonUI/InputText.jsx";
 import SelectOption from "../../CommonUI/SelectOption.jsx";
 
-const Faras = ({ formData, setFormData }) => {
+const FormFaras = ({ formData, setFormData }) => {
 
   const questions = [
     { id: "projectId", name: "ID del Proyecto", type: "text" },
@@ -80,7 +80,7 @@ const Faras = ({ formData, setFormData }) => {
   );
 };
 
-Faras.propTypes = {
+FormFaras.propTypes = {
   formData: PropTypes.shape({
     projectId: PropTypes.string,
     projectName: PropTypes.string,
@@ -94,4 +94,4 @@ Faras.propTypes = {
   setFormData: PropTypes.func.isRequired,
 };
 
-export default Faras;
+export default FormFaras;
