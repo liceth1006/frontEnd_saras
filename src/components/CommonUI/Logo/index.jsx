@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import LogoIcon from "../../../assets/images/logo.svg";
+import LogoIcon from "../../../assets/images/Logo.png";
 
 const Logo = ({ title, slogan }) => {
   return (

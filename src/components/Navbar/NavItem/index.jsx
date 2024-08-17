@@ -25,7 +25,7 @@ const NavItem = ({ items, path,setIsOpen }) => {
               handleClick(item.name);
             }}
             className={`flex items-center p-2 text-zinc-200  hover:text-gray-900 rounded-lg  hover:bg-gray-100  group ${
-              current === item.name ? "text-sky-950 font-bold bg-background-navbar " : ""
+              current === item.name ? "text-blue-950 font-bold bg-background-navbar " : ""
             }`}
           >
             <i className={item.icon} />
