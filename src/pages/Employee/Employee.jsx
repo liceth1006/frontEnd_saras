@@ -1,7 +1,11 @@
-const Employee=()=>{
+import FormFaras from "../../components/Employee/FormFaras";
+
+const FormFarasPage=()=>{
   return(
-    <>Hola</>
+    <>
+    <FormFaras></FormFaras>
+    </>
   )
 }
 
-export default Employee;
+export default FormFarasPage;

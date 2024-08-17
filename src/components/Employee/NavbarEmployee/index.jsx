@@ -11,7 +11,7 @@ const NavbarEmployee= () => {
   ]
   return (
    <>
-   <Navbar items={navbarItems} path="/employee"></Navbar>
+   <Navbar items={navbarItems} path="employee"></Navbar>
    </>
   );
 };

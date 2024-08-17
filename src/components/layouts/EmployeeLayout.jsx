@@ -1,8 +1,8 @@
 import NavbarEmployee from "../Employee/NavbarEmployee";
 import PropTypes from "prop-types";
-import FormFaras from '../Employee/FormFaras'
 import NotFound from "../../pages/NotFound";
 import { useParams } from "react-router-dom";
+import FormFarasPage from "../../pages/Employee/Employee";
 
 const EmployeeLayout=()=>{
 const { itemName } = useParams();
@@ -10,7 +10,7 @@ const { itemName } = useParams();
 let Component;
 switch (itemName) {
   case "Formulario":
-    Component = FormFaras;
+    Component = FormFarasPage;
     break;
  
 

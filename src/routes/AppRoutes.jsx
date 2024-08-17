@@ -18,7 +18,8 @@ function AppRoutes() {
       <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
       <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
       <Route path="/beneficiary/:itemName" element={<BeneficiaryLayout />} />
-      <Route path="/employee" element={<EmployeeLayout><Employee/></EmployeeLayout>} /> 
+      {/* <Route path="/employee" element={<EmployeeLayout><Employee/></EmployeeLayout>} /> */}
+      <Route path="/employee/:itemName" element={<EmployeeLayout></EmployeeLayout>} /> 
       </Routes>
 
   );
