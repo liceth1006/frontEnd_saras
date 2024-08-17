@@ -4,7 +4,7 @@ import Table from "../../../components/Table";
 import Hero from "../../../components/Hero";
 import Search from "../../../components/Search";
 const Projects = () => {
-  const { readBeneficiaryInf } = useBeneficiaryInfConnection();
+  const { readBeneficiaryInfAll } = useBeneficiaryInfConnection();
   const [consulta, setConsulta] = useState("");
   const [beneficiaryInf, setBeneficiaryInf] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ const Projects = () => {
     const fetchBeneficiaryInfo = async () => {
       setLoading(true);
       try {
-        const data = await readBeneficiaryInf();
+        const data = await readBeneficiaryInfAll();
         setBeneficiaryInf(data);
       } catch (error) {
         console.error(
@@ -26,7 +26,7 @@ const Projects = () => {
     };
 
     fetchBeneficiaryInfo();
-  }, [readBeneficiaryInf]);
+  }, [readBeneficiaryInfAll]);
 
   // Define columns with the correct accessors
   const columns = [

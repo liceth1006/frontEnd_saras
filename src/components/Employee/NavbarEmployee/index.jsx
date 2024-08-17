@@ -5,6 +5,10 @@ const NavbarEmployee= () => {
 
   const navbarItems = [
     {
+      name: "Proyectos",
+     icon:  "fa-solid fa-list-check"
+    },
+    {
       name: "Formulario",
      icon:  "fa-solid fa-list-check"
     },

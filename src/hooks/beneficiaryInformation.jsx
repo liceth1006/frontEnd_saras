@@ -6,6 +6,7 @@ const useBeneficiaryInfConnection = () => {
   const { token } = useAuth();
   const URL_BENEFICIARY = "beneficiary/";
   const URL_BENEFICIARY_INFO = "/beneficiaryInformation";
+  const URL_BENEFICIARY_ALL = "/getBeneficiaryAll";
   // Función asíncrona para leer la información del beneficiario
   const readBeneficiaryInf = useCallback(async () => {
     const userId = sessionStorage.getItem("id");
@@ -24,17 +25,42 @@ const useBeneficiaryInfConnection = () => {
 
       // Mapea los datos recibidos
       return data.map((item) => ({
-        bene_info_id: item.bene_info_id,
+        Tipo_Credito: item.Tipo_Credito,
         company_name: item.company_name,
         sector_name: item.sector_name,
         acti_name: item.acti_name,
-        // exc_name: item.exc_name,
+        Categoria: item.Categoria,
       }));
     } catch (error) {
       console.error("Error al obtener la información del beneficiario:", error);
       return [];
     }
   }, [URL_BENEFICIARY, token]);
+
+  const readBeneficiaryInfAll = useCallback(async () => {
+ 
+
+    try {
+      // Realiza la solicitud GET utilizando apiClient
+      const { data } = await apiClient.get(`${URL_BENEFICIARY_ALL}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // Mapea los datos recibidos
+      return data.map((item) => ({
+        Tipo_Credito: item.Tipo_Credito,
+        company_name: item.company_name,
+        sector_name: item.sector_name,
+        acti_name: item.acti_name,
+        Categoria: item.Categoria,
+      }));
+    } catch (error) {
+      console.error("Error al obtener la información del beneficiario:", error);
+      return [];
+    }
+  }, [URL_BENEFICIARY_ALL, token]);
 
   const postBeneficiaryInf = async (
     main_activity_id,
@@ -86,6 +112,7 @@ const useBeneficiaryInfConnection = () => {
   return {
     readBeneficiaryInf,
     postBeneficiaryInf,
+    readBeneficiaryInfAll
   };
 };
 

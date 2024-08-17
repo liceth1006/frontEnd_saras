@@ -1,5 +1,6 @@
 import NavbarEmployee from "../Employee/NavbarEmployee";
 import PropTypes from "prop-types";
+import Projects from "../../pages/Employee/Projects";
 import NotFound from "../../pages/NotFound";
 import { useParams } from "react-router-dom";
 import FormFarasPage from "../../pages/Employee/Employee";
@@ -9,6 +10,9 @@ const { itemName } = useParams();
 
 let Component;
 switch (itemName) {
+  case "Proyectos":
+    Component = Projects;
+    break;
   case "Formulario":
     Component = FormFarasPage;
     break;

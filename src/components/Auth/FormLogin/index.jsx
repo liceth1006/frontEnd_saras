@@ -43,7 +43,7 @@ const FormLogin = () => {
         if (data.userRole === "beneficiary") {
           window.location.href = "beneficiary/Mis proyectos";
         } else if (data.userRole === "employee") {
-            window.location.href = "/employee/formulario";
+            window.location.href = "/employee/Proyectos";
         } else {
             console.error(data.error);
             Swal.fire({
