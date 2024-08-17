@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import NavbarBeneficiary from "../Beneficiary/NavbarBeneficiary";
 import Projects from "../../pages/Beneficiary/Projects";
 import Form from "../../pages/Beneficiary/Form";
-import FormEnvironmentalManagement from "../../components/Beneficiary/FormEnvironmentalManagement";
+
 import NotFound from "../../pages/NotFound";
 import FormCapitalProject from "../../pages/Beneficiary/FormCapitalProject";
+import SarasInstruction from "../../pages/Beneficiary/SarasInstruction";
+import FormProjectDocuments from "../../pages/Beneficiary/FormProjectDocuments";
 
 const BeneficiaryLayout = () => {
   const { itemName } = useParams();
@@ -22,10 +24,10 @@ const BeneficiaryLayout = () => {
       Component = FormCapitalProject;
       break;
     case "Documentos":
-      Component = FormEnvironmentalManagement;
+      Component = FormProjectDocuments;
       break;
     case "Instructivo":
-      Component = FormEnvironmentalManagement;
+      Component = SarasInstruction;
       break;
     default:
       // eslint-disable-next-line react/display-name

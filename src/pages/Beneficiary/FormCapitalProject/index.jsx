@@ -336,20 +336,7 @@ const FormCapitalProject = () => {
           <FormGenderIssues formData={formData} setFormData={setFormData} />
         </div>
       )}
-      {currentSection === 7 && (
-        <div>
-          <div className="border-b-2 border-secondary-color py-4 px-5">
-            <h3 className="font-semibold">sección</h3>
-            <h2 className="text-2xl font-bold text-secondary-color">
-            DOCUMENTACIÓN SOPORTE
-            </h2>
-          </div>
-          {/* <FormCommunityHealthSafety
-            formData={formData}
-            setFormData={setFormData}
-          /> */}
-        </div>
-      )}
+     
 
       <div className="flex justify-center space-x-4 mt-5 p-6 ">
         {currentSection > 0 && (
@@ -360,7 +347,7 @@ const FormCapitalProject = () => {
             Atrás
           </button>
         )}
-        {currentSection < 7 && (
+        {currentSection < 6 && (
           <button
             onClick={handleNext}
             className="px-4 py-2 bg-blue-500 text-white rounded"
@@ -368,7 +355,7 @@ const FormCapitalProject = () => {
             Siguiente
           </button>
         )}
-        {currentSection === 7 && (
+        {currentSection === 6 && (
           <button
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded"
