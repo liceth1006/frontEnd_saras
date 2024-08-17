@@ -5,13 +5,13 @@ const NavbarEmployee= () => {
 
   const navbarItems = [
     {
-      name: "Formulario FARAS",
+      name: "Formulario",
      icon:  "fa-solid fa-list-check"
     },
   ]
   return (
    <>
-   <Navbar items={navbarItems} path="beneficiary"></Navbar>
+   <Navbar items={navbarItems} path="/employee"></Navbar>
    </>
   );
 };
