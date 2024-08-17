@@ -1,23 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
-import InputText from "../../components/CommonUI/InputText.jsx";
+import InputText from "../../CommonUI/InputText.jsx";
 import SelectOption from "../../components/CommonUI/SelectOption.jsx";
 
-const FormFARASEvaluator = ({ formData, setFormData }) => {
-  const { itemName } = useParams();
+const Faras = ({ formData, setFormData }) => {
+ 
 
-  let Component;
-  switch (itemName) {
-    case "Buscar por nombre de proyecto":
-      Component = Projects;
-      break;
-    case "Buscar por identificador":
-      Component = Form;
-      break;
-    default:
-      Component = NotFound;
-  }
 
   const questions = [
     { id: "projectId", name: "ID del Proyecto", type: "text" },
@@ -106,4 +95,4 @@ FormFARASEvaluator.propTypes = {
   setFormData: PropTypes.func.isRequired,
 };
 
-export default FormFARASEvaluator;
+export default Faras;
